@@ -1,0 +1,257 @@
+ /* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Light background for the entire page */
+}
+
+/* Navbar Styles */
+.navbar {
+  padding: 15px 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Admin Button */
+.btn-dark {
+  background-color: #343a40; /* Darker color for the button */
+  border: none; /* Remove default border */
+}
+
+.btn-dark:hover {
+  background-color: #23272b; /* Darker shade on hover */
+}
+
+/* Book List Container */
+.book-list-container {
+  
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Bar */
+.search-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+   color: #fff;
+}
+
+ 
+
+.book-card {
+  width: 100%; /* Full width within the grid column */
+  border-radius: 8px; /* Rounded corners for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  transition: transform 0.3s ease; /* Smooth transition effect */
+  overflow: hidden; /* Hide overflow */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 250px; /* Set a fixed height for the card */
+}
+
+.book-card:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+/* Image Styling */
+.book-image {
+  height: 100px; /* Set fixed height for images */
+  width: auto;
+  object-fit: cover;
+  margin-top: 15px;
+}
+.card-body {
+  text-align: left; /* Align text to the left */
+}
+/* Ensure individual elements are left-aligned */
+.card-title,
+.card-author,
+.book-description {
+  text-align: left    !important ;/* Align text of title, author, and description to the left */
+}
+/* Card Title */
+.card-title {
+  text-align: left; /* Align text to the left */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Card Author */
+.card-author {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Book Description */
+.book-description {
+  height: 60px; /* Fixed height for description */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Ellipsis for overflow text */
+  display: -webkit-box; /* Multiline ellipsis support */
+  -webkit-line-clamp: 3; /* Number of lines before truncation */
+  -webkit-box-orient: vertical; /* Vertical orientation for ellipsis */
+  margin-bottom: 10px;
+  color: #666;
+}
+
+/* Button Styling */
+.btn-custom {
+  background-color: #343a40;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: auto; /* Ensure button stays at the bottom */
+}
+
+.btn-custom:hover {
+  background-color: #495057; /* Change to a lighter shade on hover */
+}
+
+/* Popup Modal Styling */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90%;
+  color: white;
+  overflow-y: auto;
+  background-color: #343a40;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.popup-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.popup-image {
+  max-width: 100%;
+  max-height: 100px; /* Adjust the height limit */
+  object-fit: cover; /* Ensures the image scales properly */
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.popup-body {
+  padding: 10px 0;
+}
+
+
+.scrollable-description {
+  max-height: 100px;
+  overflow-y: auto; /* Scrollable description */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+/* Footer Styling */
+.footer {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  margin-top: 30px;
+}
+
+.footer h2, .footer h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-author, .book-description {
+    font-size: 0.9rem;
+  }
+
+  .btn-custom {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-author, .book-description {
+    font-size: 0.8rem;
+  }
+
+  .btn-custom {
+    font-size: 0.8rem;
+  }
+}
+.close-btn{
+  color: #ffffff !important;
+}

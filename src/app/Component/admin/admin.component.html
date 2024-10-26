@@ -1,0 +1,204 @@
+<!-- Container for the entire admin interface -->
+ <body> 
+<div *ngIf="isAdmin; else notAvailable">
+  <div class="container mt-4">
+
+
+    <!-- Header for Book Management Section -->
+    <h2 class="text-center mt-5 mb-4">Admin Book Management</h2>
+
+    <!-- Add / Update Book Form -->
+    <!-- Button to toggle Add/Update Book form -->
+  <!-- Add / Update Book Form -->
+<button (click)="CrudOperation = !CrudOperation" class="btn btn-primary mb-3">
+  {{ CrudOperation ? 'Hide Update' : 'Click for Book Update' }}
+</button>
+
+<div *ngIf="CrudOperation" class="form-container card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">{{ selectedBook ? 'Update Book' : 'Add Book' }}</h5>
+    <form (ngSubmit)="selectedBook ? updateBook() : addBook()">
+      <div class="form-group">
+        <label for="id">Book ID</label>
+        <input type="text" [(ngModel)]="newBook.id" class="form-control" id="id"
+          [ngModelOptions]="{standalone: true}" placeholder="Enter book ID" 
+          [disabled]="selectedBook ? true : false" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" [(ngModel)]="newBook.title" class="form-control" id="title"
+          [ngModelOptions]="{standalone: true}" placeholder="Enter book title" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" [(ngModel)]="newBook.author" class="form-control" id="author"
+          [ngModelOptions]="{standalone: true}" placeholder="Enter book author" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea [(ngModel)]="newBook.description" class="form-control" id="description"
+          [ngModelOptions]="{standalone: true}" placeholder="Enter book description"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="image">Book Image</label>
+        <input type="file" (change)="onFileSelected($event)" class="form-control" id="image" accept="image/*">
+      </div>
+      
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select [(ngModel)]="newBook.status" class="form-control" id="status" [ngModelOptions]="{standalone: true}">
+          <option value="Available">Available</option>
+          <option value="Borrowed">Borrowed</option>
+          <option value="Returned">Returned</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn btn-success">{{ selectedBook ? 'Update Book' : 'Add Book' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="clearSelection()" *ngIf="selectedBook">Cancel</button>
+    </form>
+  </div>
+</div>
+
+    <!-- Book List Display -->
+    <div *ngIf="CrudOperation" class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Image URL</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of bulkbooks">
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td><a [href]="book.imageUrl" target="_blank">Image</a></td>
+            <td [ngClass]="{
+              'badge badge-success': book.status === 'Available',
+              'badge badge-warning': book.status === 'Borrowed',
+              'badge badge-info': book.status === 'Returned'
+            }">{{ book.status }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="selectBook(book)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteBook(book.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <h1 class="text-center mb-4">User Details</h1>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+         
+          <th>Username</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          
+          <td>{{ user.username }}</td>
+          <td>{{ user.useremail }}</td>
+          <td>{{ user.usermobilenumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Header for Book Details Section -->
+    <h2 class="text-center mb-4">Book Database</h2>
+
+    <!-- Summary Cards -->
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <h5 class="card-title">Total Users</h5>
+            <p class="card-text">{{ totalUsers }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h5 class="card-title">Books Borrowed</h5>
+            <p class="card-text">{{ totalBooksBorrowed }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card bg-warning text-dark">
+          <div class="card-body">
+            <h5 class="card-title">Books Returned</h5>
+            <p class="card-text">{{ totalBooksReturned }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="d-flex justify-content-center mt-4 mb-4">
+      <div class="input-group" style="max-width: 500px; width: 100%;">
+        <button class="btn btn-primary rounded-pill" type="button">
+          <i class="fas fa-search"></i> <!-- Optional search icon -->
+        </button>
+        <input type="text" class="form-control rounded-pill" [(ngModel)]="searchTerm"
+          placeholder="Search by User ID, Book ID, Title, or Author">
+        <div class="input-group-append">
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Table for Displaying Borrowed Book Details -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>User ID</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filtered Books based on search term -->
+          <tr *ngFor="let book of filteredBooks()">
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.userId }}</td>
+            <td>{{ book.borrowDate | date: 'mediumDate' }}</td>
+            <td *ngIf="book.returnDate">{{ book.returnDate | date: 'mediumDate' }}</td>
+            <td *ngIf="!book.returnDate">Not Returned</td>
+            <td [ngClass]="{
+          'badge badge-success': book.status === 'returned',
+          'badge badge-warning': book.status === 'borrowed'
+        }">{{ book.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #notAvailable>
+  <p class="text-danger">You do not have access to the admin dashboard.</p>
+</ng-template>
+</body>

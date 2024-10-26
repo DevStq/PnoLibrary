@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #4CAF50; /* Green color */
+}
+
+.login-form {
+  background-color: #ffffff; /* White background for the form */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 30px; /* Increased padding inside the form */
+  width: 100%;
+  max-width: 400px; /* Max width for larger screens */
+}
+
+h2 {
+  color: #4CAF50; /* Green color for the heading */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Space between each form group */
+}
+
+.form-group label {
+  margin-bottom: 5px; /* Space below the label */
+  font-weight: bold; /* Bold label text */
+}
+
+.form-control {
+  height: 40px; /* Increased height for better touch targets */
+}
+
+.btn-primary {
+  background-color: #4CAF50; /* Button color */
+  border: none; /* Remove border */
+  width: 100%; /* Full width button */
+}
+
+.btn-primary:hover {
+  background-color: #45a049; /* Darker shade on hover */
+}
+
+.text-danger {
+  font-size: 0.875rem; /* Slightly smaller font size for error messages */
+  margin-top: 5px; /* Space above error messages */
+}
+body {
+  background-color: #4CAF50; /* Green color */
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Full viewport height */
+   
+}

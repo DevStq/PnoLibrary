@@ -1,0 +1,92 @@
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Madina-Library</a>
+</nav>
+
+<!-- Admin Button -->
+<button *ngIf="isAdmin" class="btn btn-dark btn-lg mt-4 d-block mx-auto" (click)="navigateToAdmin()">Admin Dashboard</button>
+
+<div class="container-fluid mt-4 book-list-container">
+  <!-- Heading for Available Books -->
+  <h1 class="text-center mb-4">Books Library</h1>
+
+  <!-- Search Bar and Filters -->
+  <div class="d-flex justify-content-center mb-4">
+    <div class="input-group" style="max-width: 500px; width: 100%;">
+      <input type="text" class="form-control rounded-pill search-input" [(ngModel)]="searchTerm" placeholder="Search by Title or Author">
+      <button class="btn rounded-pill"  style="background-color: #343a40;" type="button">
+        <i class="fas fa-search"  ></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Book Grid -->
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div *ngFor="let book of filteredBooks" class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="book-card card border h-100 d-flex flex-column">
+        <img [src]="book.imageUrl" alt="{{ book.title }}" class="card-img-top book-image mx-auto" />
+        <div class="card-body d-flex flex-column justify-content-between "  >
+          <h5 class="card-title text-center">{{ book.title }}</h5>
+          <p class="card-author text-center"><strong>Author:</strong>  <br>  {{ book.author }}</p>
+          <!-- <p class="card-text book-description text-center">{{ book.description }}</p> -->
+          <button class="btn-custom mt-auto" (click)="getBook(book)">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Borrow Book Popup Modal -->
+  <div class="popup" *ngIf="popupOpen">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>{{ selectedBook?.title }}</h2>
+        <button class="close-btn" (click)="closePopup()">&times;</button>
+      </div>
+      <img [src]="selectedBook?.imageUrl" alt="{{ selectedBook?.title }}" class="popup-image" />
+      <div class="popup-body">
+        <div class="scrollable-description">
+        <p>{{ selectedBook?.description }}</p>   </div>
+        <p><strong>Author:</strong> {{ selectedBook?.author }}</p>
+        <p><strong>Status:</strong> {{ selectedBook?.status }}</p>
+        
+        <hr />
+        
+        <h3>Borrow Information</h3>
+        <div *ngIf="selectedBook?.status === 'Available'; else notAvailable">
+           <p><strong>Book ID:</strong> {{ bookId }}</p>
+          <p><strong>Borrow Date:</strong> {{ borrowDate | date: 'shortDate' }}</p>
+          <div class="form-group">
+            <label for="submitDate"><strong>Book Submit Date</strong></label>
+            <input type="date" class="form-control" [(ngModel)]="submitDate"  placeholder="Select Date" id="submitDate" (change)="validateDate()" required />
+          </div>
+          <hr />
+          <div class="button-group">
+            <button class="btn btn-primary" [disabled]="isSubmitDateInvalid()" (click)="borrowBook()">Confirm Borrow</button>
+            <button class="btn btn-secondary" (click)="closePopup()">Cancel</button>
+          </div>
+        </div>
+        <!-- Template for when the book is not available -->
+        <ng-template #notAvailable>
+          <p class="text-danger">This book is not available for borrowing at the moment.</p>
+          <button class="btn btn-secondary" (click)="closePopup()">Close</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="content">
+    <!-- Your main content goes here, e.g., book grid -->
+  </div>
+  
+  <footer class="footer">
+    <p>&copy; 2024 Madina Library. All rights reserved.</p>
+    <h2>About Us</h2>
+    <p>Welcome to Madina Library, your digital gateway to a world of knowledge! Our platform is dedicated to making reading accessible and enjoyable for everyone. With a vast collection of books and resources, we aim to foster a love for reading in our community.</p>
+    
+    <h3>Contact Us</h3>
+    <p>For any inquiries or support, feel free to reach out to us  88220509843</p>
+  </footer>
+</div>

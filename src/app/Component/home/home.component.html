@@ -1,0 +1,36 @@
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>Welcome to the Book Library</h1>
+      <p>Your digital gateway to a world of knowledge!</p>
+    </div>
+  </header>
+
+  <div class="home-container">
+    <h2 class="section-title">Your Actions</h2>
+    <div class="actions">
+      <div class="action-card" (click)="borrowBook()">
+        <div class="icon"><i class="fas fa-book-open"></i></div>
+        <h3>Borrow Book</h3>
+        
+      </div>
+      <div class="action-card" (click)="returnBook()">
+        <div class="icon"><i class="fas fa-undo-alt"></i></div>
+        <h3>Return Book</h3>
+      
+      </div>
+    </div>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+  
+
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>About Us</h2>
+      <p>Welcome to Madina Library, your digital gateway to a world of knowledge! Our platform is dedicated to making reading accessible and enjoyable for everyone. With a vast collection of books and resources, we aim to foster a love for reading in our community.</p>
+      <h3>Contact Us</h3>
+      <p>For any inquiries or support, feel free to reach out to us at <a href="mailto:support@madinalibrary.com">{{mymail}}</a></p>
+    </div>
+    <p>&copy; 2024 Madina Library. All rights reserved.</p>
+  </footer>
+</body>

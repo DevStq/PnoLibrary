@@ -1,0 +1,138 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+.header {
+  background: linear-gradient(135deg,  #4CAF50,  #4CAF50);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+.header p {
+  font-size: 1.4rem;
+}
+
+.home-container {
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.action-card {
+  background-color: #4CAF50;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px #417543;;
+}
+ 
+.action-card .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.action-card h3 {
+  font-size: 1.5rem;
+  margin: 5px 0;
+}
+
+.action-card p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #4CAF50;
+  margin: 10px auto 0;
+}
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 40px;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.footer-content h2,
+.footer-content h3 {
+  margin-top: 0;
+}
+
+.footer-content a {
+  color: #ffc107;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}

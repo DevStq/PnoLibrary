@@ -1,0 +1,52 @@
+<body><div class="container">
+  <!-- Display user email -->
+  <div class="user-email" *ngIf="userEmail$ | async as userEmail">
+   </div>
+
+  <!-- Alert messages -->
+  <div *ngIf="alertMessage" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'error'}">
+    {{ alertMessage }}
+  </div>
+
+  <!-- Borrowed Books Table -->
+  <div *ngIf="borrowedBooks.length > 0" class="borrowed-books">
+    <h2 class="section-title">My Borrowed Books</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Borrow Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of borrowedBooks">
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.borrowDate | date: 'MMM d, y' }}</td>
+            <td>{{ book.status }}</td>
+            <td>
+              <button *ngIf="book.status !== 'returned'" class="btn btn-primary btn-sm"
+                      (click)="returnBook(book.bookId)">
+                Return Book
+              </button>
+              <span *ngIf="book.status === 'returned'" class="text-success">
+                Returned on {{ book.returnDate | date: 'MMM d, y' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- No borrowed books -->
+  <div *ngIf="borrowedBooks.length === 0" class="no-books">
+    <p>You haven't borrowed any books yet.</p>
+  </div>
+</div>
+</body>
