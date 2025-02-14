@@ -128,7 +128,7 @@ export class BorrowBookComponent implements OnInit {
 
     this.authService.isAdmin().subscribe(isAdmin => {
       this.isAdmin = isAdmin;
-      console.log(this.isAdmin, " this.isAdmin ")
+      console.log("Admin status:", this.isAdmin);
 
     });
   }
@@ -137,6 +137,8 @@ export class BorrowBookComponent implements OnInit {
     if (this.isAdmin) {
 
       this.router.navigate(['/admin']);
+    }else {
+      console.log("Access denied: User is not an admin.");
     }
   }
 }
