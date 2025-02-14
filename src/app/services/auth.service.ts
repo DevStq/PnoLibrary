@@ -19,7 +19,7 @@ export class AuthService {
   // Check if the current user is an admin
   isAdmin(): Observable<boolean> {
     return this.afAuth.user.pipe(
-      map(user => !!user && user.email === 'abu@gmail.com'),
+      map(user => !!user && user.email === 'admin@gmail.com'),
       catchError(() => of(false)) // Handle errors gracefully
     );
   }
